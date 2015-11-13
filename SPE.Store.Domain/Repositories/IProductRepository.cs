@@ -12,6 +12,5 @@ namespace SPE.Store.Domain.Repositories
         IList<Product> GetAllProducts(); //paginated
         IList<Product> GetProductsByCategory(); //paginated
         IList<Product> GetMostPurchased(); //paginated
-        //by publicacion date
     }
 }

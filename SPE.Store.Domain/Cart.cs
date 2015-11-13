@@ -8,14 +8,22 @@ namespace SPE.Store.Domain
 {
     public class Cart
     {
-        public Cart()
+        public Cart() // is ok for ORMs?¿
         {
             IsOrder = false;
             CreationDate = DateTime.Now;
         }
 
-        public bool IsOrder { get; set; }
-        public DateTime CreationDate { get; private set; }
+        public void AddItem(int productId)
+        {
+            //if exists add
+        }
+
+        public virtual bool IsOrder { get; set; }
+        public virtual DateTime CreationDate { get; private set; }
         public IList<LineItem> Lines;
+
+        //total price
+        //total quantity
     }
 }

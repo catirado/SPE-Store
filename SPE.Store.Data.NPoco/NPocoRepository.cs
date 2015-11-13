@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NPoco;
+using SPE.Store.Infrastructure.Domain;
 
 namespace SPE.Store.Data.NPoco
 {

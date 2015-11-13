@@ -9,5 +9,6 @@ namespace SPE.Store.Domain
     public class Category
     {
         public string Name { get; set; }
+        public IList<Product> Products { get; set; }
     }
 }

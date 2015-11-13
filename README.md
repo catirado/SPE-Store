@@ -6,3 +6,5 @@ Trabajo para la asignatura *Sistemas de Persistencia Especializados* consistente
  - NHibernate
  - Entity Framework
  - NPoco
+
+ 

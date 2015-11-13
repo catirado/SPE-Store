@@ -16,7 +16,8 @@ namespace SPE.Store.Data.NPoco
         public static void Setup()
         {
             var fluentConfig = FluentMappingConfiguration.Configure(
-                //new CampaingMap()
+                    //new CampaingMap()
+                    //mappings + conventions
                 );
 
             DbFactory = DatabaseFactory.Config(x =>

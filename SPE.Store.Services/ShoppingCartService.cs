@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPE.Store.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace SPE.Store.Services
 {
     public class ShoppingCartService : IShoppingCartService
     {
+        //confirmar pedido
+        //lo pongo como pedido
+        //y quito stock
+
     }
 }
