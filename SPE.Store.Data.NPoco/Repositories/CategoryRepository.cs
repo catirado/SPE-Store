@@ -14,7 +14,9 @@ namespace SPE.Store.Data.NPoco.Repositories
         {
             using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
             {
-                return db.Fetch<Category>();
+                return db.Fetch<Category>()
+                    .OrderBy(x=>x.Name)
+                    .ToList();
             }
         }
     }

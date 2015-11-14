@@ -13,5 +13,12 @@ namespace SPE.Store.Web.Controllers
         {
             return View();
         }
+
+        //añadir httpost
+        //cualquier cosa que añada la mando al index y le meto en seguir comprando
+
+        //eliminar
+
+        //checkout
     }
 }

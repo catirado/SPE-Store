@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SPE.Store.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private ICatalogService _catalogService;
 

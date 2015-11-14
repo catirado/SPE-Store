@@ -9,5 +9,7 @@ namespace SPE.Store.Services.Contracts
     public interface ICatalogService
     {
         IList<Product> GetMostPurchased();
+        IList<Product> GetProductsOfCategory(int categoryId);
+        IList<Category> GetCategories();
     }
 }

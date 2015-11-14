@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Categoría";
+}
+
+@model SPE.Store.Web.Models.CategoriesListViewModel
+
+<div class="row">
+    <h1>Categorías</h1>
+
+    <div class="list-group">
+        @foreach (var category in Model.Categories)
+        {
+            <a href="@Url.Action("Category", "Categories", new { categoryId = category.Id })" class="list-group-item">@category.Name</a>
+        }
+    </div>
+</div>

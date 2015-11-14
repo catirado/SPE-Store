@@ -5,11 +5,9 @@ using System.Text;
 
 namespace SPE.Store.Web.Models
 {
-    public class ProductListViewModel
+    public class CategoryListViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
-        public bool HasStock { get; set; }
-        public string Image { get; set; }
     }
 }

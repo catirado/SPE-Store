@@ -15,10 +15,13 @@ namespace SPE.Store.Services
         private const int NUM_MOST_PURCHASED = 4;
 
         private IProductRepository _productRepository;
+        private ICategoryRepository _categoryRepository;
 
-        public CatalogService(IProductRepository productRepository)
+        public CatalogService(IProductRepository productRepository, 
+                              ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public IPage<Product> GetProducts()
@@ -39,6 +42,16 @@ namespace SPE.Store.Services
         public IList<Product> GetMostPurchased()
         {
             return _productRepository.GetMostPurchased(NUM_MOST_PURCHASED);
+        }
+
+        public IList<Product> GetProductsOfCategory(int categoryId)
+        {
+            return _productRepository.GetProductsByCategory(categoryId);
+        }
+
+        public IList<Category> GetCategories()
+        {
+            return _categoryRepository.GetAll();
         }
     }
 }
