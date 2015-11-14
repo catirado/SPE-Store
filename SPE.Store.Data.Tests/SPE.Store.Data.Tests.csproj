@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>af7d30de-e022-45a3-b75d-b2637ad97d76</ProjectGuid>
+    <ProjectGuid>{36AC337A-41FA-4E4F-AB20-61570613BE01}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SPE.Store.Data.Tests</RootNamespace>
