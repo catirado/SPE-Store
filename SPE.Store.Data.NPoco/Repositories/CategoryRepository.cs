@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Data.NPoco.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : NPocoRepository<Category>, ICategoryRepository
     {
-        public IList<Category> GetCategories()
+        public IList<Category> GetAll()
         {
-            throw new NotImplementedException();
+            using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
+            {
+                return db.Fetch<Category>();
+            }
         }
     }
 }

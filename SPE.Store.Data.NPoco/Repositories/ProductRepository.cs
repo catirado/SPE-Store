@@ -22,7 +22,10 @@ namespace SPE.Store.Data.NPoco.Repositories
 
         public IList<Product> GetProductsByCategory(int categoryId)
         {
-            throw new NotImplementedException();
+            using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
+            {
+                return db.FetchBy<Product>(sql => sql.Where(x => x.ProductCategory.Id == categoryId));
+            }
         }
 
         public IList<Product> GetMostPurchased(int numberOfResults)

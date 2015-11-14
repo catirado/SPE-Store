@@ -8,6 +8,6 @@ namespace SPE.Store.Domain.Repositories
 {
     public interface ICategoryRepository
     {
-        IList<Category> GetCategories();
+        IList<Category> GetAll();
     }
 }

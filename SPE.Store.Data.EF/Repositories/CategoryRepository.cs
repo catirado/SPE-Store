@@ -9,7 +9,7 @@ namespace SPE.Store.Data.EF.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public IList<Domain.Category> GetCategories()
+        public IList<Domain.Category> GetAll()
         {
             throw new NotImplementedException();
         }
