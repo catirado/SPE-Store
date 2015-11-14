@@ -42,8 +42,6 @@
     <Compile Include="CatalogService.cs" />
     <Compile Include="Contracts\ICatalogService.cs" />
     <Compile Include="Contracts\IShoppingCartService.cs" />
-    <Compile Include="DTOs\CategoryDTO.cs" />
-    <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCartService.cs" />
   </ItemGroup>
@@ -52,10 +50,12 @@
       <Project>{efda531c-f3bc-443c-a3e9-e0bf55bbb303}</Project>
       <Name>SPE.Store.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SPE.Store.Infrastructure\SPE.Store.Infrastructure.csproj">
+      <Project>{15f44cd5-b386-4afe-88b0-71446969ac80}</Project>
+      <Name>SPE.Store.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

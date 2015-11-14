@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Domain.Repositories
 {
-    interface IShoppingCartRepository
+    public interface IShoppingCartRepository
     {
 
     }

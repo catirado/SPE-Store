@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPE.Store.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,19 @@ namespace SPE.Store.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private ICatalogService _catalogService;
+
+        public HomeController(ICatalogService catalogService)
+        {
+            _catalogService = catalogService;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            var products = _catalogService.GetMostPurchased();
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

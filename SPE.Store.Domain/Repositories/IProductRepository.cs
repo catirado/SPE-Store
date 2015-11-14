@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPE.Store.Infrastructure.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,8 @@ namespace SPE.Store.Domain.Repositories
 {
     public interface IProductRepository
     {
-        Product GetProductById(int productId);
-        IList<Product> GetAllProducts(); //paginated
-        IList<Product> GetProductsByCategory(); //paginated
-        IList<Product> GetMostPurchased(); //paginated
+        IPage<Product> GetProducts(int page, int itemsPerPage); 
+        IList<Product> GetProductsByCategory(int categoryId);
+        IList<Product> GetMostPurchased(int numberOfResults);
     }
 }

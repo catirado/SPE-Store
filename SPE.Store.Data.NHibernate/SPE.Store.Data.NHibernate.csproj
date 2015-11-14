@@ -48,13 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NHibernateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ShoppingCartRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappings\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPE.Store.Domain\SPE.Store.Domain.csproj">
+      <Project>{efda531c-f3bc-443c-a3e9-e0bf55bbb303}</Project>
+      <Name>SPE.Store.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPE.Store.Infrastructure\SPE.Store.Infrastructure.csproj">
       <Project>{15f44cd5-b386-4afe-88b0-71446969ac80}</Project>
       <Name>SPE.Store.Infrastructure</Name>

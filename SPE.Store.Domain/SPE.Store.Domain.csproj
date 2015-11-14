@@ -48,7 +48,12 @@
     <Compile Include="Repositories\IProductRepository.cs" />
     <Compile Include="Repositories\IShoppingCartRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SPE.Store.Infrastructure\SPE.Store.Infrastructure.csproj">
+      <Project>{15f44cd5-b386-4afe-88b0-71446969ac80}</Project>
+      <Name>SPE.Store.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

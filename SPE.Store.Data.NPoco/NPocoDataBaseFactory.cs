@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NPoco;
 using NPoco.FluentMappings;
+using SPE.Store.Domain;
+using SPE.Store.Data.NPoco.Mappings;
 
 namespace SPE.Store.Data.NPoco
 {
@@ -15,15 +17,19 @@ namespace SPE.Store.Data.NPoco
 
         public static void Setup()
         {
-            var fluentConfig = FluentMappingConfiguration.Configure(
-                    //new CampaingMap()
-                    //mappings + conventions
-                );
+            var conventions = FluentMappingConfiguration.Scan(scanner =>
+            {
+                scanner.Assembly(typeof(Product).Assembly);
+                scanner.IncludeTypes(x => x.Namespace.StartsWith(typeof(Product).Namespace));
+                scanner.TablesNamed(x => Inflector.MakePlural(x.Name));
+                scanner.PrimaryKeysNamed(x => "Id");
+                scanner.OverrideMappingsWith(new []{new ProductMap()});
+            });
 
             DbFactory = DatabaseFactory.Config(x =>
             {
                 x.UsingDatabase(() => new Database(DATABASE_CONNECTION_STRING));
-                x.WithFluentConfig(fluentConfig);
+                x.WithFluentConfig(conventions);
             });
         }
     }

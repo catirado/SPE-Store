@@ -42,14 +42,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootstrapFactory.cs" />
+    <Compile Include="Database\DatabaseSetup.cs" />
+    <Compile Include="IoC\EFRepositoriesModule.cs" />
+    <Compile Include="IoC\NHibernateRepositoryModule.cs" />
+    <Compile Include="IoC\NPocoRepositoriesModule.cs" />
+    <Compile Include="IoC\ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Database\" />
-    <Folder Include="IoC\" />
+    <ProjectReference Include="..\SPE.Store.Data.EF\SPE.Store.Data.EF.csproj">
+      <Project>{c3aa0dbf-76f8-44e9-aa42-6b45d8df00cb}</Project>
+      <Name>SPE.Store.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPE.Store.Data.NHibernate\SPE.Store.Data.NHibernate.csproj">
+      <Project>{22af8083-da3a-4452-a206-de3130a7ac5f}</Project>
+      <Name>SPE.Store.Data.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPE.Store.Data.NPoco\SPE.Store.Data.NPoco.csproj">
+      <Project>{478a154b-022e-4901-9c47-37b3685a6fb9}</Project>
+      <Name>SPE.Store.Data.NPoco</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPE.Store.Domain\SPE.Store.Domain.csproj">
+      <Project>{efda531c-f3bc-443c-a3e9-e0bf55bbb303}</Project>
+      <Name>SPE.Store.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPE.Store.Infrastructure\SPE.Store.Infrastructure.csproj">
+      <Project>{15f44cd5-b386-4afe-88b0-71446969ac80}</Project>
+      <Name>SPE.Store.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPE.Store.Services\SPE.Store.Services.csproj">
+      <Project>{99ced3eb-a0ee-46a0-81b3-336d3e76af75}</Project>
+      <Name>SPE.Store.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
