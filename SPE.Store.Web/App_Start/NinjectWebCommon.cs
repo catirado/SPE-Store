@@ -12,6 +12,8 @@ namespace SPE.Store.Web.App_Start
     using Ninject.Web.Common;
     using Ninject.Modules;
     using SPE.Store.Infrastructure.Bootstrap.IoC;
+    using SPE.Store.Infrastructure.Bootstrap;
+    using SPE.Store.Web.Helpers;
 
     public static class NinjectWebCommon 
     {
@@ -63,12 +65,7 @@ namespace SPE.Store.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var modules = new INinjectModule[]
-            { 
-                new ServicesModule(),
-                new NPocoRepositoriesModule()
-            };
-
+            var modules = BootstrapFactory.GetModules(ORMConfig.ORM);
             kernel.Load(modules);
         }        
     }

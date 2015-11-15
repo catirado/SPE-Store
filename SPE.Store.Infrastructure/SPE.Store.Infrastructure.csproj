@@ -45,9 +45,7 @@
     <Compile Include="Domain\Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Scripts\SPEStore.sql" />
   </ItemGroup>

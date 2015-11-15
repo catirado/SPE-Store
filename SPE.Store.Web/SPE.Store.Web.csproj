@@ -204,6 +204,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ORMConfig.cs" />
     <Compile Include="Helpers\Pager.cs" />
     <Compile Include="Helpers\PaginationExtensions.cs" />
     <Compile Include="Models\BaseViewModel.cs" />

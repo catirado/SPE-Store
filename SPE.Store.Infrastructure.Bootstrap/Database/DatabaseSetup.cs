@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Infrastructure.Bootstrap.Database
 {
-    public static class DatabaseSetup
+    public static class NPocoDatabaseSetup
     {
         public static void Setup()
         {

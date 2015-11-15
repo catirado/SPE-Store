@@ -1,4 +1,6 @@
-﻿using SPE.Store.Infrastructure.Bootstrap.Database;
+﻿using SPE.Store.Infrastructure.Bootstrap;
+using SPE.Store.Infrastructure.Bootstrap.Database;
+using SPE.Store.Web.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +19,7 @@ namespace SPE.Store.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            DatabaseSetup.Setup();
+            BootstrapFactory.DatabaseSetup(ORMConfig.ORM, ORMConfig.Connection);
         }
     }
 }
