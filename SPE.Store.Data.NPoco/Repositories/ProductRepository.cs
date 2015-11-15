@@ -56,12 +56,11 @@ namespace SPE.Store.Data.NPoco.Repositories
                     .From("products p")
                     .LeftJoin("categories c")
                     .On("p.CategoryId = c.Id")
-                    .Where("p.Id IN (SELECT TOP 3 ProductId "
+                    .Where("p.Id IN (SELECT TOP " + numberOfResults +" ProductId "
                     + "FROM LineItems GROUP BY ProductId ORDER BY COUNT(ProductId) desc)");
 
                 return db.Fetch<Product, Category>(
-                    query)
-                    .Take<Product>(numberOfResults).ToList();
+                    query).ToList();
             }
         }
     }
