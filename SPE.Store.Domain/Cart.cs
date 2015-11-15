@@ -16,12 +16,12 @@ namespace SPE.Store.Domain
             Lines = new List<LineItem>();
         }
 
-        public bool IsOrder { get; set; }
-        public DateTime CreationDate { get; private set; }
-        public IList<LineItem> Lines { get; set; }
+        public virtual bool IsOrder { get; set; }
+        public virtual DateTime CreationDate { get; set; }
+        public virtual IList<LineItem> Lines { get; set; }
 
-        public int TotalQuantity { get { return Lines.Sum(x => x.Quantity); } }
-        public decimal TotalAmount { get { return Lines.Sum(x => x.Amount); } }
+        public virtual int TotalQuantity { get { return Lines.Sum(x => x.Quantity); } }
+        public virtual decimal TotalAmount { get { return Lines.Sum(x => x.Amount); } }
 
     }
 }

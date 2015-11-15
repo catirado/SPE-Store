@@ -11,15 +11,15 @@ namespace SPE.Store.Domain
     {
         public Product() { }
 
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Author { get; set; }
-        public string Image { get; set; }
-        public decimal Price { get; set; }
-        public int UnitsOnStock { get; set; }
-        public Category ProductCategory { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Description { get; set; }
+        public virtual string Author { get; set; }
+        public virtual string Image { get; set; }
+        public virtual decimal Price { get; set; }
+        public virtual int UnitsOnStock { get; set; }
+        public virtual Category ProductCategory { get; set; }
 
-        public bool HasStock
+        public virtual bool HasStock
         {
             get { return UnitsOnStock > 0; }
         }

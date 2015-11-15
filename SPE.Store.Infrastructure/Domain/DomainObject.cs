@@ -8,6 +8,6 @@ namespace SPE.Store.Infrastructure.Domain
 {
     public class DomainObject
     {
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
     }
 }

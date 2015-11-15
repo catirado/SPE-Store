@@ -9,11 +9,11 @@ namespace SPE.Store.Domain
 {
     public class LineItem : DomainObject
     {
-        public int CartId { get; set; }
-        public int ProductId { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
-        public string ProductName { get; set; }
-        public decimal Amount { get { return Price * Quantity;  } }
+        public virtual int CartId { get; set; }
+        public virtual int ProductId { get; set; }
+        public virtual int Quantity { get; set; }
+        public virtual decimal Price { get; set; }
+        public virtual string ProductName { get; set; }
+        public virtual decimal Amount { get { return Price * Quantity; } }
     }
 }
