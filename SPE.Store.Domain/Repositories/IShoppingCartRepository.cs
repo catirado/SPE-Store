@@ -11,9 +11,7 @@ namespace SPE.Store.Domain.Repositories
     {
         Cart GetActiveCart();
         void AddItem(Cart cart, Product product, int quantity);
-        void RemoveItemLine(int cartId, int itemLineId);
-        void EmptyCart(int cartId);
-        void UpdateCartStatus(bool isOrder);
         void UpdateQuantity(Cart cart, Product product, int quantity);
+        void RemoveItemLine(int cartId, int itemLineId);
     }
 }

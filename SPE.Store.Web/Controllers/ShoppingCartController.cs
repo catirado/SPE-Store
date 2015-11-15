@@ -29,6 +29,7 @@ namespace SPE.Store.Web.Controllers
             if(cart != null)
             {
                 cartViewModel.Id = cart.Id;
+                cartViewModel.Total = cart.TotalAmount;
                 cartViewModel.Lines = cart.Lines;
                 cartViewModel.ItemInCart = cart.TotalQuantity;
             }
@@ -44,14 +45,17 @@ namespace SPE.Store.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int productId)
+        public ActionResult Delete(int itemLineId)
         {
+            var cart = Session["cart"] as Cart;
+            _shoppingCartService.RemoveItemLine(cart.Id, itemLineId);
             return RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
-            _shoppingCartService.Checkout((Session["cart"] as Cart).Id);
+            _shoppingCartService.Checkout((Session["cart"] as Cart));
+            Session["cart"] = null;
             return RedirectToAction("Index", "Home");
         }
     }

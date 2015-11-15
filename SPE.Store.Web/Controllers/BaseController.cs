@@ -22,6 +22,7 @@ namespace SPE.Store.Web.Controllers
             if (Session["cart"] == null)
             {
                 var cart = _shoppingCartService.GetActiveCart();
+                Session["cart"] = cart;
                 return cart.TotalQuantity;
             }
             else

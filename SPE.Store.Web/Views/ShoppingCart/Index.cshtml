@@ -21,58 +21,50 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    @foreach(var line in Model.Lines)
+                    {
+                        
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
                                 <div class="media-body">
-                                    <h4 class="media-heading"><a href="#">Product name</a></h4>
+                                    <h4 class="media-heading"><a href="#">@line.ProductName</a></h4>
                                 </div>
                             </div>
                         </td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>3</strong>
+                        <td class="col-sm-1 col-md-1" style="text-align: center"><strong>@line.Quantity</strong>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>@line.Price</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>@line.Amount</strong></td>
                         <td class="col-sm-1 col-md-1">
-                            <button type="button" class="btn btn-danger">
+                            <a href="@Url.Action("Delete", "ShoppingCart", new { itemLineId = line.Id })" type="button" class="btn btn-danger">
                                 <span class="glyphicon glyphicon-remove"></span> Eliminar
-                            </button>
+                            </a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td><h5>Gasto de envío</h5></td>
-                        <td class="text-right"><h5><strong>$6.00</strong></h5></td>
-                    </tr>
+
+                    }
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <td class="text-right"><h3><strong>@Model.Total</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td>
-                            <button type="button" class="btn btn-default">
+                            <a href="@Url.Action("Index","Products")" class="btn btn-default">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Seguir comprando
-                            </button>
+                            </a>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-success">
+                            <a href="@Url.Action("Checkout","ShoppingCart")" class="btn btn-success">
                                 Pagar <span class="glyphicon glyphicon-play"></span>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 </tbody>

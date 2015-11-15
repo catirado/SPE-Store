@@ -39,17 +39,10 @@ namespace SPE.Store.Data.NPoco.Repositories
 
         public void RemoveItemLine(int cartId, int itemLineId)
         {
-            throw new NotImplementedException();
-        }
-
-        public void EmptyCart(int cartId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateCartStatus(bool isOrder)
-        {
-            throw new NotImplementedException();
+            using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
+            {
+                db.Delete(new LineItem(){Id = itemLineId });
+            }
         }
 
         public void UpdateQuantity(Cart cart, Product product, int quantity)

@@ -31,11 +31,15 @@ namespace SPE.Store.Services
 
         public void AddItem(Cart cart, Product product, int quantity)
         {
-            //update quantity
-            //if exists add, else update
-            //_shoppingCartRepository.UpdateQuantity(cart, product, quantity);
-            _shoppingCartRepository.AddItem(cart, product, quantity);
-
+            var existingLine = cart.Lines.SingleOrDefault(x => x.ProductId == product.Id);
+            if (existingLine != null)
+            {
+                _shoppingCartRepository.UpdateQuantity(cart, product, quantity);
+            }
+            else
+            {
+                _shoppingCartRepository.AddItem(cart, product, quantity);
+            }
         }
 
         public void RemoveItemLine(int cartId, int itemLineId)
@@ -43,15 +47,10 @@ namespace SPE.Store.Services
             _shoppingCartRepository.RemoveItemLine(cartId, itemLineId);
         }
 
-        public void EmptyCart(int cartId)
+        public void Checkout(Cart cart)
         {
-            _shoppingCartRepository.EmptyCart(cartId);
-        }
-
-        public void Checkout(int cartId)
-        {
-            bool isOrder = true;
-            _shoppingCartRepository.UpdateCartStatus(isOrder);
+            cart.IsOrder = true;
+            _shoppingCartRepository.Update(cart);
         }
 
     }
