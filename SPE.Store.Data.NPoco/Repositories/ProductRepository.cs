@@ -55,7 +55,9 @@ namespace SPE.Store.Data.NPoco.Repositories
                     .Select("p.*", "c.*")
                     .From("products p")
                     .LeftJoin("categories c")
-                    .On("p.CategoryId = c.Id");
+                    .On("p.CategoryId = c.Id")
+                    .Where("p.Id IN (SELECT TOP 3 ProductId "
+                    + "FROM LineItems GROUP BY ProductId ORDER BY COUNT(ProductId) desc)");
 
                 return db.Fetch<Product, Category>(
                     query)
