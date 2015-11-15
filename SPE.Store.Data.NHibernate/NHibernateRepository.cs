@@ -1,4 +1,5 @@
-﻿using SPE.Store.Infrastructure.Domain;
+﻿using NHibernate;
+using SPE.Store.Infrastructure.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +8,30 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Data.NHibernate
 {
-    public class NHibernateRepository<T> : IRepository<T> where T : DomainObject
+    public class NHibernateRepository<T> : NHibernateBase, IRepository<T> where T : DomainObject
     {
+        public NHibernateRepository(ISession session) : base(session) { }
+
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return Transact(() => Session.Get<T>(id));
         }
 
         public T Add(T entity)
         {
-            throw new NotImplementedException();
+            Transact(() => Session.Save(entity));
+            return entity;
         }
 
         public T Update(T entity)
         {
-            throw new NotImplementedException();
+            Transact(() => Session.Update(entity));
+            return entity;
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteById(int id)
-        {
-            throw new NotImplementedException();
+            Transact(() => Session.Delete(entity));
         }
     }
 }

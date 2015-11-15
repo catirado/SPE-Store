@@ -11,9 +11,10 @@ namespace SPE.Store.Infrastructure.Bootstrap
 {
     public static class BootstrapFactory
     {
-        public static void DatabaseSetup(string orm, string connection)
+        public static void AppStartSetup(string orm, string connection)
         {
-            NPocoDatabaseSetup.Setup();
+            if (orm == "NPoco")
+                NPocoDatabaseSetup.Setup(connection);
         }
 
         public static IList<NinjectModule> GetModules(string orm)
@@ -22,6 +23,12 @@ namespace SPE.Store.Infrastructure.Bootstrap
             modules.Add(new ServicesModule());
             if (orm == "NPoco")
                 modules.Add(new NPocoRepositoriesModule());
+            if (orm == "NHibernate")
+            {
+                modules.Add(new NHibernateRepositoryModule());
+                modules.Add(new NHibernateSessionModule());
+            }
+                
             return modules;
         }
     }

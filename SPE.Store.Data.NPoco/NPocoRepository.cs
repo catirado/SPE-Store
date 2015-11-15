@@ -43,13 +43,5 @@ namespace SPE.Store.Data.NPoco
             }
         }
 
-        public void DeleteById(int id)
-        {
-            using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
-            {
-                db.Delete<T>(id);
-            }
-        }
-
     }
 }

@@ -11,11 +11,9 @@ namespace SPE.Store.Data.NPoco
 {
     public static class NPocoDataBaseFactory
     {
-        private const string DATABASE_CONNECTION_STRING = "DefaultConnection";
-
         public static DatabaseFactory DbFactory { get; set; }
 
-        public static void Setup()
+        public static void Setup(string connection)
         {
             var conventions = FluentMappingConfiguration.Scan(scanner =>
             {
@@ -32,7 +30,7 @@ namespace SPE.Store.Data.NPoco
 
             DbFactory = DatabaseFactory.Config(x =>
             {
-                x.UsingDatabase(() => new Database(DATABASE_CONNECTION_STRING));
+                x.UsingDatabase(() => new Database(connection));
                 x.WithFluentConfig(conventions);
             });
         }

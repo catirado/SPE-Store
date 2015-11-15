@@ -12,6 +12,5 @@ namespace SPE.Store.Infrastructure.Domain
         T Add(T entity);
         T Update(T entity);
         void Delete(T entity);
-        void DeleteById(int id);
     }
 }

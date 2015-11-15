@@ -1,4 +1,5 @@
-﻿using SPE.Store.Domain;
+﻿using NHibernate;
+using SPE.Store.Domain;
 using SPE.Store.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,11 @@ namespace SPE.Store.Data.NHibernate.Repositories
 {
     public class ShoppingCartRepository : NHibernateRepository<Cart>, IShoppingCartRepository
     {
+        public ShoppingCartRepository(ISession session)
+            : base(session)
+        {
+        }
+
         public Domain.Cart GetActiveCart()
         {
             throw new NotImplementedException();

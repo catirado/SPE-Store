@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NHibernateBase.cs" />
     <Compile Include="NHibernateRepository.cs" />
+    <Compile Include="NHibernateSessionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />

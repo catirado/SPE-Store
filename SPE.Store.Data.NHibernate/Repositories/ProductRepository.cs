@@ -1,4 +1,5 @@
-﻿using SPE.Store.Domain;
+﻿using NHibernate;
+using SPE.Store.Domain;
 using SPE.Store.Domain.Repositories;
 using SPE.Store.Infrastructure.Domain;
 using System;
@@ -11,6 +12,11 @@ namespace SPE.Store.Data.NHibernate.Repositories
 {
     public class ProductRepository : NHibernateRepository<Product>, IProductRepository
     {
+        public ProductRepository(ISession session)
+            : base(session)
+        {
+        }
+
         public IPage<Product> GetProducts(int page, int itemsPerPage)
         {
             throw new NotImplementedException();

@@ -30,11 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ninject">
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,8 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BootstrapFactory.cs" />
-    <Compile Include="Database\DatabaseSetup.cs" />
+    <Compile Include="Database\NPocoDatabaseSetup.cs" />
     <Compile Include="IoC\NHibernateRepositoryModule.cs" />
+    <Compile Include="IoC\NhibernateSessionFactoryProvider.cs" />
+    <Compile Include="IoC\NHibernateSessionModule.cs" />
     <Compile Include="IoC\NPocoRepositoriesModule.cs" />
     <Compile Include="IoC\ServicesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,9 +9,9 @@ namespace SPE.Store.Infrastructure.Bootstrap.Database
 {
     public static class NPocoDatabaseSetup
     {
-        public static void Setup()
+        public static void Setup(string connection)
         {
-            NPocoDataBaseFactory.Setup();
+            NPocoDataBaseFactory.Setup(connection);
         }
     }
 }

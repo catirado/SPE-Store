@@ -19,7 +19,7 @@ namespace SPE.Store.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            BootstrapFactory.DatabaseSetup(ORMConfig.ORM, ORMConfig.Connection);
+            BootstrapFactory.AppStartSetup(ORMConfig.ORM, ORMConfig.Connection);
         }
     }
 }
