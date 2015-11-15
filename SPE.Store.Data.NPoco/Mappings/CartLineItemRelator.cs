@@ -37,7 +37,8 @@ namespace SPE.Store.Data.NPoco.Mappings
             // Setup the new current cart
             current = cart;
             current.Lines = new List<LineItem>();
-            current.Lines.Add(line);
+            if (line != null)
+              current.Lines.Add(line);
 
             // Return the now populated previous cart (or null if first time through)
             return prev;

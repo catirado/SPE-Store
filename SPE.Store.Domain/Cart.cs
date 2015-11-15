@@ -9,16 +9,11 @@ namespace SPE.Store.Domain
 {
     public class Cart : DomainObject
     {
-        public Cart() // is ok for ORMs?¿
+        public Cart()
         {
             IsOrder = false;
             CreationDate = DateTime.Now;
             Lines = new List<LineItem>();
-        }
-
-        public void AddItem(Product product, int quantity)
-        {
-            //if exists add
         }
 
         public bool IsOrder { get; set; }
