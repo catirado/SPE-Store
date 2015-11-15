@@ -25,7 +25,7 @@ namespace SPE.Store.Data.NHibernate
 
         public T Update(T entity)
         {
-            Transact(() => Session.Update(entity));
+            Transact(() => Session.Merge(entity));
             return entity;
         }
 
