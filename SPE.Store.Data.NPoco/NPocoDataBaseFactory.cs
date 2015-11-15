@@ -23,7 +23,7 @@ namespace SPE.Store.Data.NPoco
                 scanner.IncludeTypes(x => x.Namespace.StartsWith(typeof(Product).Namespace));
                 scanner.TablesNamed(x => Inflector.MakePlural(x.Name));
                 scanner.PrimaryKeysNamed(x => "Id");
-                scanner.OverrideMappingsWith(new []{new ProductMap()});
+                scanner.OverrideMappingsWith(new IMap[]{new ProductMap(), new CategoryMap()});
             });
 
             DbFactory = DatabaseFactory.Config(x =>

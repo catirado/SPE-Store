@@ -8,6 +8,9 @@ namespace SPE.Store.Domain.Repositories
 {
     public interface IShoppingCartRepository
     {
-
+        Cart GetActiveCart();
+        Cart AddItem(int cartId, int productId, int quantity);
+        void RemoveItemLine(int cartId, int itemLineId);
+        void EmptyCart(int cartId);
     }
 }

@@ -22,3 +22,25 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.container .jumbotron {
+    background: url('./Images/photo-1429051883746-afd9d56fbdaf.jpg');
+    color: #ffffff;
+    text-shadow: 0 1px 0 black;
+
+}
+
+.thumbnail > img {
+    max-width: 325px;
+    padding-top: 8px;
+}
+
+.thumbnail .btn-lg{
+    margin-top: 12px;
+}
+
+.list-group
+{
+    font-size: 18px;
+    font-weight: bold;
+}

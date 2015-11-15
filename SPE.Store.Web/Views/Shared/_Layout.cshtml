@@ -28,7 +28,7 @@
                     <li>@Html.ActionLink("Categorías", "Index", "Categories")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li role="presentation" class="active"><a href="@Url.Action("Index", "ShoppingCart")">ver carrito <span class="badge">3</span></a></li>
+                    <li role="presentation" class="active"><a href="@Url.Action("Index", "ShoppingCart")">ver carrito <span class="badge">@Model.ItemInCart</span></a></li>
                 </ul>
             </div>
         </div>

@@ -9,8 +9,9 @@ namespace SPE.Store.Domain
 {
     public class LineItem : DomainObject
     {
-        public int ProductId;
-        public int Quantity;
-        public decimal Amount;
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal Amount { get { return Price * Quantity;  } }
     }
 }

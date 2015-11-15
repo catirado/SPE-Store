@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\PageAdapterFactory.cs" />
+    <Compile Include="Mappings\CartMap.cs" />
+    <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\LineItemMap.cs" />
     <Compile Include="Mappings\ProductMap.cs" />
     <Compile Include="NPocoDataBaseFactory.cs" />
     <Compile Include="NPocoRepository.cs" />

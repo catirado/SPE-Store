@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPE.Store.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,10 @@ namespace SPE.Store.Services.Contracts
 {
     public interface IShoppingCartService
     {
-        //add product
-        //delete product
-        //empty
+        Cart GetActiveCart();
+        Cart AddItem(int cartId, int productId, int quantity);
+        void RemoveItemLine(int cartId, int itemLineId);
+        void EmptyCart(int cartId);
+        void Checkout(int cartId);
     }
 }

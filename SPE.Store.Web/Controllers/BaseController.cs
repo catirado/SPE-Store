@@ -13,14 +13,19 @@ namespace SPE.Store.Web.Controllers
         {
             if (Session["cart"] == null)
             {
+                //try to get the only that is not confirmed
+                //is the same for all the world
+
+                //else
+                Session["cart"] = new Cart();
+                //and save the cart...
                 return 0;
             }
             else
             {
                 var cart = Session["cart"] as Cart;
-                return cart.Lines.Sum(x => x.Quantity);
+                return cart.TotalQuantity;
             }
         }
-
     }
 }

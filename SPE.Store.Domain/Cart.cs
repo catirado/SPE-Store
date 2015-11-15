@@ -13,18 +13,20 @@ namespace SPE.Store.Domain
         {
             IsOrder = false;
             CreationDate = DateTime.Now;
+            Lines = new List<LineItem>();
         }
 
-        public void AddItem(int productId)
+        public void AddItem(Product product, int quantity)
         {
             //if exists add
         }
 
-        public virtual bool IsOrder { get; set; }
-        public virtual DateTime CreationDate { get; private set; }
-        public IList<LineItem> Lines;
+        public bool IsOrder { get; set; }
+        public DateTime CreationDate { get; private set; }
+        public IList<LineItem> Lines { get; set; }
 
-        //total price
-        //total quantity
+        public int TotalQuantity { get { return Lines.Sum(x => x.Quantity); } }
+        public decimal TotalAmount { get { return Lines.Sum(x => x.Amount); } }
+
     }
 }
