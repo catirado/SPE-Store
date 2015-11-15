@@ -9,7 +9,7 @@ namespace SPE.Store.Services.Contracts
     public interface IShoppingCartService
     {
         Cart GetActiveCart();
-        Cart AddItem(int cartId, int productId, int quantity);
+        void AddItem(Cart cart, Product product, int quantity);
         void RemoveItemLine(int cartId, int itemLineId);
         void EmptyCart(int cartId);
         void Checkout(int cartId);

@@ -1,4 +1,5 @@
 ﻿using SPE.Store.Domain;
+using SPE.Store.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,19 @@ namespace SPE.Store.Web.Controllers
 {
     public class BaseController : Controller
     {
+        protected IShoppingCartService _shoppingCartService;
+
+        public BaseController(IShoppingCartService shoppingCartService)
+        {
+            _shoppingCartService = shoppingCartService;
+        }
+
         protected int GetItemsInCart()
         {
             if (Session["cart"] == null)
             {
-                //try to get the only that is not confirmed
-                //is the same for all the world
-
-                //else
-                Session["cart"] = new Cart();
-                //and save the cart...
-                return 0;
+                var cart = _shoppingCartService.GetActiveCart();
+                return cart.TotalQuantity;
             }
             else
             {

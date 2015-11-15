@@ -15,7 +15,9 @@ namespace SPE.Store.Data.NPoco.Mappings
             Columns(x =>
             {
                 x.Column(y => y.IsOrder).WithName("Confirmed");
-                //x.Column(y => y.Lines).Ignore().Result();
+                x.Column(y => y.Lines).Result();
+                x.Column(y => y.TotalAmount).Ignore();
+                x.Column(y => y.TotalQuantity).Ignore();
             });
         }
     }

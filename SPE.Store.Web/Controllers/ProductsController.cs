@@ -15,7 +15,8 @@ namespace SPE.Store.Web.Controllers
         private const int NUM_PRODUCTS_PER_PAGE = 6;
         private ICatalogService _catalogService;
 
-        public ProductsController(ICatalogService catalogService)
+        public ProductsController(IShoppingCartService shoppingCartService,
+                                      ICatalogService catalogService) : base(shoppingCartService)
         {
             _catalogService = catalogService;
         }

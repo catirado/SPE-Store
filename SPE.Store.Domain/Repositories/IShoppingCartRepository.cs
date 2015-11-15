@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPE.Store.Infrastructure.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Domain.Repositories
 {
-    public interface IShoppingCartRepository
+    public interface IShoppingCartRepository : IRepository<Cart>
     {
         Cart GetActiveCart();
-        Cart AddItem(int cartId, int productId, int quantity);
+        void AddItem(Cart cart, Product product, int quantity);
         void RemoveItemLine(int cartId, int itemLineId);
         void EmptyCart(int cartId);
+        void UpdateCartStatus(bool isOrder);
+        void UpdateQuantity(Cart cart, Product product, int quantity);
     }
 }

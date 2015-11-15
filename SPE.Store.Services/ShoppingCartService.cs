@@ -1,4 +1,5 @@
-﻿using SPE.Store.Domain.Repositories;
+﻿using SPE.Store.Domain;
+using SPE.Store.Domain.Repositories;
 using SPE.Store.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -19,27 +20,39 @@ namespace SPE.Store.Services
 
         public Domain.Cart GetActiveCart()
         {
-            return _shoppingCartRepository.GetActiveCart();
+            var cart = _shoppingCartRepository.GetActiveCart();
+            if (cart == null)
+            {
+                Cart newCart = new Cart();
+                return _shoppingCartRepository.Add(newCart);
+            }
+            return cart;
         }
 
-        public Domain.Cart AddItem(int cartId, int productId, int quantity)
+        public void AddItem(Cart cart, Product product, int quantity)
         {
-            throw new NotImplementedException();
+            //update quantity
+            //if exists add, else update
+            //_shoppingCartRepository.UpdateQuantity(cart, product, quantity);
+            _shoppingCartRepository.AddItem(cart, product, quantity);
+
         }
 
         public void RemoveItemLine(int cartId, int itemLineId)
         {
-            throw new NotImplementedException();
+            _shoppingCartRepository.RemoveItemLine(cartId, itemLineId);
         }
 
         public void EmptyCart(int cartId)
         {
-            throw new NotImplementedException();
+            _shoppingCartRepository.EmptyCart(cartId);
         }
 
         public void Checkout(int cartId)
         {
-            throw new NotImplementedException();
+            bool isOrder = true;
+            _shoppingCartRepository.UpdateCartStatus(isOrder);
         }
+
     }
 }

@@ -11,52 +11,48 @@ namespace SPE.Store.Web.Controllers
 {
     public class ShoppingCartController : BaseController
     {
-        private IShoppingCartService _shoppingCartService;
+        private ICatalogService _catalogService;
 
-        public ShoppingCartController(IShoppingCartService shoppingCartService)
+        public ShoppingCartController(IShoppingCartService shoppingCartService,
+                                      ICatalogService catalogService) : base(shoppingCartService)
         {
-            _shoppingCartService = shoppingCartService;
+            _catalogService = catalogService;
         }
 
         public ActionResult Index()
         {
             var cart = _shoppingCartService.GetActiveCart();
             Session["cart"] = cart;
-            var cartViewModel = new ShoppingCartViewModel()
-            {
-                Id = cart.Id,
-                Lines = cart.Lines,
-                ItemInCart = cart.TotalQuantity
-            };
 
+            var cartViewModel = new ShoppingCartViewModel();
+            
+            if(cart != null)
+            {
+                cartViewModel.Id = cart.Id;
+                cartViewModel.Lines = cart.Lines;
+                cartViewModel.ItemInCart = cart.TotalQuantity;
+            }
+            
             return View(cartViewModel);
         }
-
-        //cualquier cosa que añada la mando al index y le meto en seguir comprando
 
         public ActionResult AddToCart(int productId)
         {
             var cart = Session["cart"] as Cart;
-            _shoppingCartService.AddItem(cart.Id, productId, 1);
+            var product = _catalogService.GetProduct(productId);
+            _shoppingCartService.AddItem(cart, product, 1);
             return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int productId)
         {
-
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult EmptyCart()
-        {
-
             return RedirectToAction("Index");
         }
 
         public ActionResult Checkout()
         {
-
-            return RedirectToAction("Index");
+            _shoppingCartService.Checkout((Session["cart"] as Cart).Id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

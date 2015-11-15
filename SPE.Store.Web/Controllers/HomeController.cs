@@ -13,7 +13,8 @@ namespace SPE.Store.Web.Controllers
     {
         private ICatalogService _catalogService;
 
-        public HomeController(ICatalogService catalogService)
+        public HomeController(IShoppingCartService shoppingCartService,
+                                      ICatalogService catalogService) : base(shoppingCartService)
         {
             _catalogService = catalogService;
         }

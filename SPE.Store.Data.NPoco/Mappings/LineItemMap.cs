@@ -14,6 +14,7 @@ namespace SPE.Store.Data.NPoco.Mappings
         {
             Columns(x =>
             {
+                x.Column(y => y.ProductName).Result();
                 x.Column(y => y.Amount).Ignore();
             });
         }
