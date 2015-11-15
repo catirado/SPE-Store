@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NHibernate.Linq;
 
 namespace SPE.Store.Data.NHibernate.Repositories
 {
@@ -16,24 +17,30 @@ namespace SPE.Store.Data.NHibernate.Repositories
         {
         }
 
-        public Domain.Cart GetActiveCart()
+        public Cart GetActiveCart()
         {
-            throw new NotImplementedException();
+            return Transact(() => from cart in Session.Query<Cart>()
+                                  where cart.IsOrder == false
+                                  select cart).FirstOrDefault();
         }
 
         public void RemoveItemLine(int cartId, int itemLineId)
         {
-            throw new NotImplementedException();
+            var line = new LineItem() { Id = itemLineId };
+            Transact(() => Session.Delete(line));
         }
 
-        void IShoppingCartRepository.AddItem(Domain.Cart cart, Domain.Product product, int quantity)
+        public void AddItem(Cart cart, Product product, int quantity)
         {
-            throw new NotImplementedException();
+            var line = new LineItem() { CartId = cart.Id, Price = product.Price, Quantity = quantity, ProductId = product.Id };
+            Transact(() => Session.Save(line));
         }
 
-        public void UpdateQuantity(Domain.Cart cart, Domain.Product product, int quantity)
+        public void UpdateQuantity(Cart cart, Domain.Product product, int quantity)
         {
-            throw new NotImplementedException();
+            var line = cart.Lines.Single<LineItem>(x => x.ProductId == product.Id);
+            line.Quantity = line.Quantity + quantity;
+            Transact(() => Session.Update(line));
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using SPE.Store.Domain.Repositories;
+﻿using NHibernate;
+using SPE.Store.Domain;
+using SPE.Store.Domain.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,16 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Data.NHibernate.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : NHibernateBase, ICategoryRepository
     {
-        public IList<Domain.Category> GetAll()
+        public CategoryRepository(ISession session)
+            : base(session)
         {
-            throw new NotImplementedException();
+        }
+
+        public IList<Category> GetAll()
+        {
+            return Transact(() => base.Session.QueryOver<Category>()).List();
         }
     }
 }

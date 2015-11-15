@@ -1,6 +1,10 @@
-﻿using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Automapping;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using SPE.Store.Data.NHibernate.Mappings;
+using SPE.Store.Data.NHibernate.Mappings.Conventions;
+using SPE.Store.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +17,17 @@ namespace SPE.Store.Data.NHibernate
     {
         public ISessionFactory GetSessionFactory()
         {
+            var model = new AutoPersistenceModel()
+                        .AddEntityAssembly(typeof(Product).Assembly)
+                        .Where(t => t.Namespace.StartsWith(typeof(Product).Namespace))
+                        .Conventions.AddFromAssemblyOf<TableNameConvention>()
+                        .UseOverridesFromAssemblyOf<CartMapOverride>();
+
             ISessionFactory fluentConfiguration = Fluently.Configure()
-                                                   .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c => c.FromConnectionStringWithKey("ConnectionString")))
-                                                   .Mappings(m => m.FluentMappings.AddFromAssemblyOf<SPE.Store.Domain.Product>())
+                                                   .Database(MsSqlConfiguration.MsSql2012
+                                                            .ConnectionString(c => c.FromConnectionStringWithKey("DefaultConnection"))
+                                                            .ShowSql())
+                                                   .Mappings(m => m.AutoMappings.Add(model))
                                                    .BuildSessionFactory();
 
             return fluentConfiguration;
