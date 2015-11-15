@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace SPE.Store.Data.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ShoppingCartRepositoryTests
     {
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
