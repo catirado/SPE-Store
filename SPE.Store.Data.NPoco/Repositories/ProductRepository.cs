@@ -1,4 +1,5 @@
-﻿using SPE.Store.Domain;
+﻿using SPE.Store.Data.NPoco.Adapters;
+using SPE.Store.Domain;
 using SPE.Store.Domain.Repositories;
 using SPE.Store.Infrastructure.Domain;
 using System;
@@ -15,8 +16,19 @@ namespace SPE.Store.Data.NPoco.Repositories
         {
             using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
             {
-                var pages = db.Page<Product>(page, itemsPerPage, "");
-                return null;
+                //we need to use alias for avoid error of duplicated Id and Name field
+                var query = new global::NPoco.Sql()
+                        .Select("p.*", "c.Id as Category_Id", "c.Name as Category_Name")
+                        .From("products p")
+                        .LeftJoin("categories c")
+                        .On("p.CategoryId = c.Id");
+
+               var pages = db.Page<Product, Category>(
+                    page, 
+                    itemsPerPage,
+                    query);
+
+               return PageAdapterFactory<Product>.CreateAdapter(pages);
             }
         }
 
@@ -24,7 +36,14 @@ namespace SPE.Store.Data.NPoco.Repositories
         {
             using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
             {
-                return db.FetchBy<Product>(sql => sql.Where(x => x.ProductCategory.Id == categoryId));
+                return db.Fetch<Product, Category>(
+                    new global::NPoco.Sql()
+                    .Select("p.*","c.*")
+                    .From("products p")
+                    .LeftJoin("categories c")
+                    .On("p.CategoryId = c.Id")
+                    .Where("p.CategoryId = @0", categoryId))
+                    .ToList();
             }
         }
 
@@ -32,7 +51,15 @@ namespace SPE.Store.Data.NPoco.Repositories
         {
             using (var db = NPocoDataBaseFactory.DbFactory.GetDatabase())
             {
-                return db.Fetch<Product>().Take<Product>(4).ToList();
+                var query = new global::NPoco.Sql()
+                    .Select("p.*", "c.*")
+                    .From("products p")
+                    .LeftJoin("categories c")
+                    .On("p.CategoryId = c.Id");
+
+                return db.Fetch<Product, Category>(
+                    query)
+                    .Take<Product>(numberOfResults).ToList();
             }
         }
     }

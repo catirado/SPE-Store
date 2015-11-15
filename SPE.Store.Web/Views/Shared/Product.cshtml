@@ -2,12 +2,26 @@
 
 <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-        <img src="@Url.Content("~/Images/books/" + Model.Image)" alt="@Model.Name">
+        <img src="@Url.Content("~/Content/Images/books/" + Model.Image)" alt="@Model.Name">
         <div class="caption">
-            <h3>@Model.Name</h3>
+            <h4>@Model.Name</h4>
+            <p>@Model.Description</p>
             <p>
-                <h3 class="danger">@Model.Price</h3> 
-                <a href="#" class="btn btn-default" role="button">Comprar</a>
+                <div class="row">
+                    <div class="col-md-7">
+                        <h2 class="text-center">@Model.Price.ToString("c")</h2>
+                    </div>
+                    <div class="col-md-5">
+                        @if (Model.HasStock)
+                        {
+                            <a href="@Url.Action("AddToCart", "ShoppingCart", new { productId = Model.Id })" class="btn btn-lg btn-success" role="button">Comprar</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-lg btn-warning disabled" role="button">Sin stock</a>
+                        }
+                    </div>
+                </div>
             </p>
         </div>
     </div>

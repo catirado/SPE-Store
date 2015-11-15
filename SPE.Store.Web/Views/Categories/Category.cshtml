@@ -1,0 +1,12 @@
+﻿@model SPE.Store.Web.Models.ProductsListViewModel
+
+<div class="row">
+    <h1>@Model.Products.First().ProductCategoryName</h1>
+
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            @Html.Partial("Product", product)
+        }
+    </div>
+</div>

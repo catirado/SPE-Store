@@ -2,7 +2,7 @@
     ViewBag.Title = "Inicio";
 }
 
-@model SPE.Store.Web.Models.ProductListViewModel
+@model SPE.Store.Web.Models.ProductsListViewModel
 
 <div class="jumbotron">
     <h1>SPE Store</h1>
@@ -10,14 +10,11 @@
 </div>
 
 <div class="row">
-    <h3>Libros más vendidos</h3>
-    <div class="col-md-3">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
+    <h3 class="text-center">Libros más vendidos</h3>
+
+    @foreach (var product in Model.Products)
+    {
+        @Html.Partial("Product", product)
+    }
+
 </div>

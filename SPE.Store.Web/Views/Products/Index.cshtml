@@ -1,7 +1,21 @@
-﻿
+﻿@using MvcContrib.Pagination
+@using SPE.Store.Web.Helpers
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Libros</h2>
 
+@model SPE.Store.Web.Models.PagedProductsListViewModel
+
+<div class="row">
+    @foreach (var product in Model.Products)
+    {
+        @Html.Partial("Product", product)
+    }
+</div>
+
+<div class="row">
+    @Html.Raw(Html.Pager(Model.Products).First("Primera").Last("Última").Next("Siguiente").Previous("Anterior").NumberOfPagesToDispay(10))
+</div>

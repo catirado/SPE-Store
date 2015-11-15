@@ -12,7 +12,7 @@ namespace SPE.Store.Services
 {
     public class CatalogService : ICatalogService
     {
-        private const int NUM_MOST_PURCHASED = 4;
+        private const int NUM_MOST_PURCHASED = 3;
 
         private IProductRepository _productRepository;
         private ICategoryRepository _categoryRepository;
@@ -24,20 +24,16 @@ namespace SPE.Store.Services
             _categoryRepository = categoryRepository;
         }
 
-        public IPage<Product> GetProducts()
+        public Product GetProduct(int id)
         {
-            var products = _productRepository.GetProducts(1, 100);
-            return products;
+            return _productRepository.GetById(id);
         }
 
-
-        //get categories
-
-        //get products by category
-
-        //get products
-
-        //get favourites
+        public IPage<Product> GetProducts(int page, int itemsPerPage)
+        {
+            var products = _productRepository.GetProducts(page, itemsPerPage);
+            return products;
+        }
 
         public IList<Product> GetMostPurchased()
         {
@@ -53,5 +49,6 @@ namespace SPE.Store.Services
         {
             return _categoryRepository.GetAll();
         }
+
     }
 }

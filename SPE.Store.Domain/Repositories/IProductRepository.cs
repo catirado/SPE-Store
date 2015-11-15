@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SPE.Store.Domain.Repositories
 {
-    public interface IProductRepository
+    public interface IProductRepository : IRepository<Product>
     {
         IPage<Product> GetProducts(int page, int itemsPerPage); 
         IList<Product> GetProductsByCategory(int categoryId);

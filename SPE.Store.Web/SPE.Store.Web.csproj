@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\packages\MvcContrib.2.0.95.0\lib\MvcContrib.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -180,9 +186,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Pager.cs" />
+    <Compile Include="Helpers\PaginationExtensions.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\CategoriesListViewModel.cs" />
     <Compile Include="Models\CategoryListViewModel.cs" />
+    <Compile Include="Models\PagedProductsListViewModel.cs" />
     <Compile Include="Models\ProductsListViewModel.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\ShoppingCartViewModel.cs" />
@@ -191,6 +200,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\books\4104OS_Mini.jpg" />
+    <Content Include="Content\Images\books\410OV1mJOWL.jpg" />
+    <Content Include="Content\Images\books\419PNz5w82L.jpg" />
+    <Content Include="Content\Images\books\41eQDUF82KL.jpg" />
+    <Content Include="Content\Images\books\51-Y8-3WhJL.jpg" />
+    <Content Include="Content\Images\books\512VegyoIZL.jpg" />
+    <Content Include="Content\Images\books\516zoFkpAb.jpg" />
+    <Content Include="Content\Images\books\51NZ-jS47TL_.jpg" />
+    <Content Include="Content\Images\books\sqlalchemy.jpg" />
+    <Content Include="Content\Images\photo-1429051883746-afd9d56fbdaf.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -226,11 +245,10 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Shared\Product.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Categories\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\books\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

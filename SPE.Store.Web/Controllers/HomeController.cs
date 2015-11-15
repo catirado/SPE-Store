@@ -1,9 +1,11 @@
 ﻿using SPE.Store.Services.Contracts;
+using SPE.Store.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Omu.ValueInjecter;
 
 namespace SPE.Store.Web.Controllers
 {
@@ -19,8 +21,14 @@ namespace SPE.Store.Web.Controllers
         public ActionResult Index()
         {
             var products = _catalogService.GetMostPurchased();
-
-            return View();
+            var productsViewModel = new ProductsListViewModel()
+            {
+                ItemInCart = GetItemsInCart(),
+                Products = products.Select(
+                        x => new ProductListViewModel().InjectFrom(x) as ProductListViewModel)
+                        .ToList()
+            };
+            return View(productsViewModel);
         }
 
     }
