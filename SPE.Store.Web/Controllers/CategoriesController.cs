@@ -44,6 +44,5 @@ namespace SPE.Store.Web.Controllers
             };
             return View(productsViewModel);
         }
-
     }
 }
