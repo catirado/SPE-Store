@@ -19,7 +19,7 @@ En el ``web.config`` configurar la ruta de la base de datos en las ``connectionS
 
 ```xml
 <add key="ORM" value="NHibernate" />
- <add key="ORM:Connection" value="DefaultConnection" />
+<add key="ORM:Connection" value="DefaultConnection" />
 ```
 
 El valor ORM puede ser **NHhibernate** o **NPoco** dependiendo del sistema de persistencia que deseemos utilizar.
