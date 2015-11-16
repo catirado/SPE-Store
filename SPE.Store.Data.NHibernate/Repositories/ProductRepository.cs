@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NHibernate.Linq;
+using NHibernate.Criterion;
 
 namespace SPE.Store.Data.NHibernate.Repositories
 {
@@ -20,8 +21,24 @@ namespace SPE.Store.Data.NHibernate.Repositories
 
         public IPage<Product> GetProducts(int page, int itemsPerPage)
         {
+            var query = Session.QueryOver<Product>()
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Future<Product>();
 
-            throw new NotImplementedException();
+            var result = query.ToList();
+            var rowcount = Session.QueryOver<Product>()
+                        .Select(Projections.Count(Projections.Id()))
+                        .FutureValue<int>().Value;
+
+            return new Page<Product>()
+            {
+                Items = result,
+                CurrentPage = page,
+                ItemsPerPage = itemsPerPage,
+                TotalItems = rowcount,
+                TotalPages = rowcount / itemsPerPage
+            };
         }
 
         public IList<Product> GetProductsByCategory(int categoryId)
@@ -33,6 +50,11 @@ namespace SPE.Store.Data.NHibernate.Repositories
 
         public IList<Product> GetMostPurchased(int numberOfResults)
         {
+            /*var subquery = Session.Query<LineItem>()
+                .Select(x => x.ProductId)
+                .GroupBy<LineItem>(x => x.ProductId);
+            */
+
             return Transact(() => from products in Session.Query<Product>()
                                   select products).ToList();
         }
