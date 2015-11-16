@@ -14,6 +14,7 @@ namespace SPE.Store.Data.NHibernate.Mappings
         public void Override(AutoMapping<LineItem> mapping)
         {
             mapping.IgnoreProperty(x => x.Amount);
+            
             /*mapping.References<Product>(x => x.ProductName, "Name")
                     .Column("ProductId")
                     .ReadOnly();*/
