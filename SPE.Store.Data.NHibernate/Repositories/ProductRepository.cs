@@ -50,13 +50,17 @@ namespace SPE.Store.Data.NHibernate.Repositories
 
         public IList<Product> GetMostPurchased(int numberOfResults)
         {
-            /*var subquery = Session.Query<LineItem>()
-                .Select(x => x.ProductId)
-                .GroupBy<LineItem>(x => x.ProductId);
-            */
-
-            return Transact(() => from products in Session.Query<Product>()
-                                  select products).ToList();
+            var subquery = Session.Query<LineItem>()
+                .GroupBy(x => x.ProductId)
+                .Select(y => new { Key = y.Key, Total = y.Count() })
+                .OrderByDescending(x => x.Total)
+                .Take(3)
+                .ToList()
+                .Select(x=>x.Key);
+            
+            return Transact(() => Session.Query<Product>()
+                                .Where(x => subquery.Contains(x.Id))
+                                .ToList());
         }
     }
 }
