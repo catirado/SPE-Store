@@ -18,12 +18,12 @@ namespace SPE.Store.Services
             _shoppingCartRepository = shoppingCartRepository;
         }
 
-        public Domain.Cart GetActiveCart()
+        public Cart GetActiveCart()
         {
             var cart = _shoppingCartRepository.GetActiveCart();
             if (cart == null)
             {
-                Cart newCart = new Cart();
+                var newCart = new Cart();
                 return _shoppingCartRepository.Add(newCart);
             }
             return cart;

@@ -31,8 +31,7 @@ namespace SPE.Store.Services
 
         public IPage<Product> GetProducts(int page, int itemsPerPage)
         {
-            var products = _productRepository.GetProducts(page, itemsPerPage);
-            return products;
+            return _productRepository.GetProducts(page, itemsPerPage);
         }
 
         public IList<Product> GetMostPurchased()
