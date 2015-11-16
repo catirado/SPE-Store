@@ -17,7 +17,7 @@ namespace SPE.Store.Infrastructure.Bootstrap
                 NPocoDatabaseSetup.Setup(connection);
         }
 
-        public static IList<NinjectModule> GetModules(string orm)
+        public static IList<NinjectModule> GetModules(string orm, string connection)
         {
             var modules = new List<NinjectModule>();
             modules.Add(new ServicesModule());
@@ -26,7 +26,7 @@ namespace SPE.Store.Infrastructure.Bootstrap
             if (orm == "NHibernate")
             {
                 modules.Add(new NHibernateRepositoryModule());
-                modules.Add(new NHibernateSessionModule());
+                modules.Add(new NHibernateSessionModule(connection));
             }
                 
             return modules;

@@ -15,7 +15,7 @@ namespace SPE.Store.Data.NHibernate
 {
     public class NHibernateSessionFactory
     {
-        public ISessionFactory GetSessionFactory()
+        public ISessionFactory GetSessionFactory(string connection)
         {
             var model = new AutoPersistenceModel()
                         .AddEntityAssembly(typeof(Product).Assembly)
@@ -25,7 +25,7 @@ namespace SPE.Store.Data.NHibernate
 
             ISessionFactory fluentConfiguration = Fluently.Configure()
                                                    .Database(MsSqlConfiguration.MsSql2012
-                                                            .ConnectionString(c => c.FromConnectionStringWithKey("DefaultConnection"))
+                                                            .ConnectionString(c => c.FromConnectionStringWithKey(connection))
                                                             .ShowSql())
                                                    .Mappings(m => m.AutoMappings.Add(model))
                                                    .BuildSessionFactory();

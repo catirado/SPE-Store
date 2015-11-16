@@ -65,7 +65,7 @@ namespace SPE.Store.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var modules = BootstrapFactory.GetModules(ORMConfig.ORM);
+            var modules = BootstrapFactory.GetModules(ORMConfig.ORM, ORMConfig.Connection);
             kernel.Load(modules);
         }        
     }
